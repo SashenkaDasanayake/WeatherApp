@@ -18,7 +18,15 @@ namespace WeatherApp.Controllers
         {
             return View();
         }
+        public ActionResult WeatherOrNot()
+        {
+            return View();
+        }
 
-
+        public JsonResult GetWeather()
+        {
+            Weather weath = new Weather();
+            return Json(weath.getWeatherForcast(), JsonRequestBehavior.AllowGet);
+        }
     }
 }
