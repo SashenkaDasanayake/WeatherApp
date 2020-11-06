@@ -1,24 +1,30 @@
 ﻿
 @{
-    ViewBag.Title = "WeatherJS";
+    ViewBag.Title = "Weather Or Not";
 }
 
 <h2>WeatherJS</h2>
-<p id="name"></p>
-<p id="temp"></p>
-<p id="humidity"></p>
+
+<div class="col-md-12">
+    <h1>Current Conditions in <span data-bind="text:name"></span></h1>
+</div>
+
+<div class="col-md-12">
+    Temperature is <span data-bind="text:main.temp"></span>&deg; F
+</div>
+
 <button>Get Weather</button>
 
 <script>
+    var weather = Object();
     $(document).ready(function () {
-        $("button").click(function(){
-            $.get("http://api.openweathermap.org/data/2.5/weather?q=Colombo&appid=b46dac9ab9628ac1264c3d5069620236&units=imperial", function (response) {
+            $.get("@Url.Action("GetWeather", "Home")", function (response) {
                 //response
                 console.log(response);
-                $("#name").text(response.name);
-                $("#temp").text(response.main.temp);
-                $("#humidity").text(response.main.humidity);
+                weather = ko.mapping.fromJS(response);  //populate the weather object
+                ko.applyBindings(weather);
+
             });
-        });
     });
+
 </script>
