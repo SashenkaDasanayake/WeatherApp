@@ -17,6 +17,14 @@ Wind-Speed :<p id="wind"></p>
 <button>Weather Details</button>
 
 <script>
+
+    var ip = '208.67.222.222'$.get('https://ipapi.co/'+ip+'/latlong/', function(response){
+        var latlong = response.split(',');
+        console.log(latlong);  $.get('http://api.openweathermap.org/data/2.5/weather?lat=' + latlong[0] + '&lon=' + latlong[1] + '&appid=API_KEY', function(wResponse){
+            console.log(weather);
+        });
+    });
+
     $(document).ready(function () {
         $("button").click(function () {
             var cityname = $("#txtCity").val();

@@ -21,6 +21,11 @@ namespace WeatherApp.Models
             var content = client.DownloadString(url);
             var serializer = new JavaScriptSerializer();
             var jsonContent = serializer.Deserialize<Object>(content);
+
+
+            string IP = "";
+            string strHostName = "";
+
             return jsonContent;
         }
 
