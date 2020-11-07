@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using System.Xml;
 
 namespace WeatherApp.Models
 {
@@ -24,8 +25,17 @@ namespace WeatherApp.Models
 
 
             string IP = "";
+            string city = "";
             string strHostName = "";
+            strHostName = System.Net.Dns.GetHostName();
 
+            IPHostEntry ipEntry = System.Net.Dns.GetHostEntry(strHostName);
+            IPAddress[] addr = ipEntry.AddressList;
+
+            IP = addr[2].ToString();
+
+            XmlTextReader reader = new XmlTextReader(url);
+            
             return jsonContent;
         }
 
